@@ -1,0 +1,5 @@
+x=5;
+console.log(x);
+let x;
+console.log(x);
+
