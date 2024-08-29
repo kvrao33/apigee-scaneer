@@ -1,5 +1,3 @@
-x=5;
-console.log(x);
-let x;
-console.log(x);
+import generateToken from "./utility/generateToken.js";
 
+await generateToken()
