@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APIGee Report</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table-hover tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+        .badge-warning {
+            background-color: #ffc107;
+        }
+        .badge-danger {
+            background-color: #dc3545;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .highlight {
+            background-color: #eaf2f8;
+            border-left: 5px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">APIGee Report</h1>
+        <h2 class="mb-4">API Proxy: <span class="text-primary"><%= apiProxyName %></span></h2>
+        <h4 class="mb-4">Revision Number: <%= revisionNumber %></h4>
+
+        <div class="mb-4">
+            <h4>Total Errors: <span class="badge badge-danger"><%= totalErrorCount %></span></h4>
+            <h4>Total Warnings: <span class="badge badge-warning"><%= totalWarningCount %></span></h4>
+        </div>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>File Path</th>
+                    <th>Errors</th>
+                    <th>Warnings</th>
+                    <th>Fixable Errors</th>
+                    <th>Fixable Warnings</th>
+                    <th>Messages</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% formattedArray.forEach(item => { %>
+                    <tr class="<%= item.warningCount > 0 ? 'highlight' : '' %>">
+                        <td><a href="<%= item.filePath %>" target="_blank"><%= item.filePath %></a></td>
+                        <td><span class="badge badge-danger"><%= item.errorCount %></span></td>
+                        <td><span class="badge badge-warning"><%= item.warningCount %></span></td>
+                        <td><span class="badge badge-danger"><%= item.fixableErrorCount %></span></td>
+                        <td><span class="badge badge-warning"><%= item.fixableWarningCount %></span></td>
+                        <td>
+                            <% if (item.messages.length > 0) { %>
+                                <ul class="list-unstyled">
+                                    <% item.messages.forEach(message => { %>
+                                        <li>
+                                            <strong><%= message.nodeType %>:</strong> <%= message.message %>
+                                            <% if (message.line && message.column) { %>
+                                                <br><small>Line: <%= message.line %>, Column: <%= message.column %></small>
+                                            <% } %>
+                                        </li>
+                                    <% }) %>
+                                </ul>
+                            <% } else { %>
+                                No messages
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

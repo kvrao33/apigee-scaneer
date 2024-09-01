@@ -1,8 +1,9 @@
 import express from "express";
-import router from "./index/index.js";
-
+import indexRouter from "./index/route.js";
+import getReportRouter from "./get-report/route.js";
 const apiBaseRouter = express.Router();
 // Exposed endpoints
-apiBaseRouter.use("/",router)
+apiBaseRouter.use("/",indexRouter)
+apiBaseRouter.use("/get-report",getReportRouter)
 
 export default apiBaseRouter;

@@ -9,9 +9,6 @@
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        
-    </style>
 </head>
 <body>
     <div class="header">
@@ -29,18 +26,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% proxies.forEach(proxy => { %>
+                    <% proxies.forEach((proxy, index) => { %>
                     <tr>
                         <td><%= proxy.name %></td>
                         <td>
-                            <select class="form-control">
+                            <input type="hidden" id="proxyName-<%= index %>" value="<%= proxy.name %>">
+                            <select id="revision-<%= index %>" class="form-control revision-select">
                                 <% proxy.revision.forEach(rev => { %>
                                 <option value="<%= rev %>"><%= rev %></option>
                                 <% }) %>
                             </select>
                         </td>
                         <td>
-                            <button class="btn btn-success">Get Report</button>
+                            <button type="button" class="btn btn-success get-report" data-index="<%= index %>">Get Report</button>
                         </td>
                     </tr>
                     <% }) %>
@@ -52,6 +50,22 @@
     <script>
         $(document).ready(function(){
             $('#myTable').dataTable();
+
+            $('.get-report').click(function(){
+                var index = $(this).data('index');
+                var proxyName = $('#proxyName-' + index).val();
+                var revision = $('#revision-' + index).val();
+
+                console.log('proxyName:', proxyName);
+                console.log('revision:', revision);
+
+                if (proxyName && revision) {
+                    var url = '/get-report?proxyName=' + encodeURIComponent(proxyName) + '&revision=' + encodeURIComponent(revision);
+                    window.open(url, '_blank');
+                } else {
+                    alert("Please select a revision.");
+                }
+            });
         });
     </script>
 </body>

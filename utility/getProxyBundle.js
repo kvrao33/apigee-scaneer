@@ -56,6 +56,7 @@ const downloadAndUnzipProxy = async (orgName, proxyName,rev, token) => {
     // Clean up the zip file if needed
     fs.unlinkSync(localFilePath);
   }
+  return localUnzipPath;
 };
 
 export default downloadAndUnzipProxy;
