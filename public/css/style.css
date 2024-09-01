@@ -1,0 +1,93 @@
+/* public/css/style.css */
+/* body {
+    background: linear-gradient(to bottom, #00c6ff, #0072ff);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  } */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #bde3ee, #8ebcf5);
+    overflow: hidden;
+}
+
+.header {
+    /* background-color: #0072ff; */
+    color: #ffffff;
+    /* border: 2px solid #ffffff; */
+    border-radius: 10px;
+    padding: 15px 25px;
+    text-align: center;
+    margin: 12px; /* No margin at the top */
+    font-size: 56px;
+    font-weight: bold;
+    text-shadow: 2px 2px 0 #000000;
+    position: absolute; /* Position at the top */
+    top: 0; /* Align with the top of the page */
+    width: 80%;
+    max-width: 700px;
+}
+
+.info {
+  background-color: #ffffff;
+  color: #0072ff;
+  border: 2px solid #0072ff;
+  border-radius: 5px;
+  padding: 20px;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  margin: 20px 0;
+  position: absolute; /* Position below the header */
+  top: 80px; /* Adjust based on header height */
+}
+
+.container {
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 900px;
+  position: absolute;
+  top: 150px; /* Adjust based on header and info height */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Make the 'Proxy Name' column header bold and apply a different font */
+th:nth-child(1) {
+  font-weight: bolder;
+}
+
+/* Style for the 'Proxy Name' column data */
+td:nth-child(1) {
+  font-family: 'Arial', sans-serif; /* You can use a different font if you prefer */
+  font-weight: bold;
+  color: #000105; /* Stylish font color */
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}

@@ -12,8 +12,6 @@ async function generateToken () {
     // The client will be authorized with the necessary credentials
     const tokenResponse = await client.getAccessToken();
     const token = tokenResponse.token;
-
-    console.log('Generated Token:', token);
     return token;
   } catch (error) {
     console.error('Error generating token:', error);
