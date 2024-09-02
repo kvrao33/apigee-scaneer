@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apigee Scanner</title>
+    <link rel="stylesheet" href="/css/report.css"><link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><h1>Apigee Bundle Linter Report</h1></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.formattedArray.forEach((element, index) => { %>
+        <tr>
+          <td>
+            <div id="accordion<%= index %>">
+              <div class="card">
+                <div class="card-header" id="heading<%= index %>">
+                  <h5 class="mb-0">
+                    <span 
+                      class="btn btn-link"
+                      data-toggle="collapse"
+                      data-target="#collapse<%= index %>"
+                      aria-expanded="true"
+                      aria-controls="collapse<%= index %>"
+                      <%
+                      if
+                      (element.messages.length
+                    >
+                      0 && element.messages.some(msg => msg.message)) { %>
+                      style="color: red;" <% } %> > <%= element.name %>
+                    </span>
+                    
+                  </h5>
+                </div>
+                <% for (let i = 0; i < element.messages.length; i++) { %> <% if
+                (element.messages[i].message) { %>
+                <div
+                  id="collapse<%= index %>"
+                  class="collapse"
+                  aria-labelledby="heading<%= index %>"
+                  data-parent="#accordion<%= index %>"
+                >
+                  <div class="card-body">
+                    <%= element.messages[i].message %>
+                  </div>
+                  <% if (i < element.messages.length - 1) { %>
+                  <hr />
+                  <!-- Line between messages -->
+                  <% } %>
+                </div>
+                <% } %> <% } %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

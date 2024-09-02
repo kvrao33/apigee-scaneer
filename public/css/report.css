@@ -1,0 +1,92 @@
+/* General table styling */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Styling for the name column */
+.name-column {
+    width: 60%; /* Adjust the width as needed */
+}
+
+/* Styling for the count column */
+.count-column {
+    width: 40%; /* Adjust the width as needed */
+}
+
+/* Accordion button styling */
+.btn-link {
+    font-weight: 400;
+    color: #007bff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Red button color for buttons with messages */
+.btn-with-messages {
+    color: red;
+}
+
+/* Accordion card styling */
+.card {
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 0.75rem;
+}
+
+.card-body {
+    padding: 0.75rem;
+    background-color: #ffffff;
+}
+
+/* Ensure accordion buttons inside card headers have space */
+.card-header .btn-link {
+    padding: 0.5rem;
+    display: block;
+}
+
+/* Styling for horizontal line between messages */
+.message-item hr {
+    border: 0;
+    border-top: 1px solid #dee2e6;
+    margin: 0.5rem 0;
+}
+
+/* Collapsible row styling */
+.collapse-row {
+    background-color: #f8f9fa;
+}
+
+.collapse-row td {
+    padding: 0;
+}
+
+.collapse-row .card-body {
+    padding: 0.75rem;
+}

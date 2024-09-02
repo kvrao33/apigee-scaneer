@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
     );
 
     fs.rmSync(path, { recursive: true, force: true });
-    res.render("report", lintResult);
+    res.render("reportv2", {data :lintResult});
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");

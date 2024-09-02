@@ -160,4 +160,4 @@ const lintResults = [
   },
 ];
 
-console.log(formatLintReport(orgName,"hello-world", 2,lintResults));
+console.log(JSON.stringify(formatLintReport(orgName,"hello-world", 2,lintResults)));

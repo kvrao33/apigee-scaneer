@@ -1,139 +1,158 @@
-[
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/proxies/default.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/targets/combo-product.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/targets/default.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/AC-ipRistrict.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/AM-setRequest.xml",
-    "errorCount": 0,
-    "warningCount": 2,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": [
-      {
-        "message": "AM-setRequest is not attached to a Step in the bundle.  Remove unused policies.",
-        "ruleId": "BN005",
-        "severity": 1,
-        "nodeType": "Policy"
-      },
-      {
-        "message": "unnecessary AssignTo with no named message",
-        "line": 11,
-        "column": 3,
-        "ruleId": "PO012",
-        "severity": 1,
-        "nodeType": "AssignMessage"
-      }
-    ]
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/FC-Cors.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/FC-aesDecryption.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/FC-aesEncryption.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/FC-messageLogging.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/FC-verifyJWTToken.xml",
-    "errorCount": 0,
-    "warningCount": 0,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": []
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/VK-verifyApiKey.xml",
-    "errorCount": 0,
-    "warningCount": 1,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": [
-      {
-        "line": 2,
-        "column": 59,
-        "message": "Non-standard name for policy (VK-verifyApiKey). Valid prefixes for the VerifyAPIKey policy: [\"verifyapikey\",\"apikey\",\"va\",\"verify\"]. Valid patterns: [\"^verifyapikey$\"].",
-        "ruleId": "PO007",
-        "severity": 1,
-        "nodeType": "Policy"
-      }
-    ]
-  },
-  {
-    "filePath": "/home/karthik/Downloads/cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02/apiproxy/policies/Verify-API-Key-1.xml",
-    "errorCount": 0,
-    "warningCount": 1,
-    "fixableErrorCount": 0,
-    "fixableWarningCount": 0,
-    "messages": [
-      {
-        "line": 3,
-        "column": 3,
-        "message": "Filename \"Verify-API-Key-1.xml\" does not match policy display name \"Verify API Key-1\". To avoid confusion when working online and offline use the same name for files and display name in policies (excluding .xml extension).",
-        "ruleId": "PO008",
-        "severity": 1,
-        "nodeType": "Policy"
-      }
-    ]
-  }
-]
+{
+  "formattedArray": [
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Bundle: cyber-sachet-gahp-integration-nonprod_rev76_2024_05_02"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/proxy-endpoints/default?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Proxy-endpoint: default"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/target-endpoints/combo-product?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Target-endpoint: combo-product"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/target-endpoints/default?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Target-endpoint: default"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/AC-ipRistrict?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Policy: AC-ipRistrict"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/AM-setRequest?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 2,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [
+        {
+          "message": "AM-setRequest is not attached to a Step in the bundle.  Remove unused policies.",
+          "ruleId": "BN005",
+          "severity": 1,
+          "nodeType": "Policy"
+        },
+        {
+          "message": "unnecessary AssignTo with no named message",
+          "line": 11,
+          "column": 3,
+          "ruleId": "PO012",
+          "severity": 1,
+          "nodeType": "AssignMessage"
+        }
+      ],
+      "name": "Policy: AM-setRequest"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/FC-Cors?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Policy: FC-Cors"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/FC-aesDecryption?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Policy: FC-aesDecryption"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/FC-aesEncryption?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Policy: FC-aesEncryption"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/FC-messageLogging?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Policy: FC-messageLogging"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/FC-verifyJWTToken?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [],
+      "name": "Policy: FC-verifyJWTToken"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/VK-verifyApiKey?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 1,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [
+        {
+          "line": 2,
+          "column": 59,
+          "message": "Non-standard name for policy (VK-verifyApiKey). Valid prefixes for the VerifyAPIKey policy: [\"verifyapikey\",\"apikey\",\"va\",\"verify\"]. Valid patterns: [\"^verifyapikey$\"].",
+          "ruleId": "PO007",
+          "severity": 1,
+          "nodeType": "Policy"
+        }
+      ],
+      "name": "Policy: VK-verifyApiKey"
+    },
+    {
+      "filePath": "https://console.cloud.google.com/apigee/proxies/hello-world/develop/2/policies/Verify-API-Key-1?project=third-octagon-427015-c4",
+      "errorCount": 0,
+      "warningCount": 1,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "messages": [
+        {
+          "line": 3,
+          "column": 3,
+          "message": "Filename \"Verify-API-Key-1.xml\" does not match policy display name \"Verify API Key-1\". To avoid confusion when working online and offline use the same name for files and display name in policies (excluding .xml extension).",
+          "ruleId": "PO008",
+          "severity": 1,
+          "nodeType": "Policy"
+        }
+      ],
+      "name": "Policy: Verify-API-Key-1"
+    }
+  ],
+  "totalErrorCount": 0,
+  "totalWarningCount": 4,
+  "apiProxyName": "hello-world",
+  "revisionNumber": 2
+}
