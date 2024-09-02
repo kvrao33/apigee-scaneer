@@ -4,6 +4,17 @@
     margin-bottom: 1rem;
     color: #212529;
 }
+.success.bg {
+    background-color: rgb(218, 245, 218);
+}
+
+.error-bg {
+    background-color: rgb(255, 192, 192);
+}
+
+.warning-bg {
+    background-color: rgb(247, 218, 165);
+}
 
 .table th {
     background-color: #f8f9fa;

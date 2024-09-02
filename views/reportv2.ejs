@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Apigee Scanner</title>
-    <link rel="stylesheet" href="/css/report.css" />
+    <link rel="stylesheet" href="/public/css/report.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -15,22 +15,45 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      .success-bg {
+    background-color: rgb(182, 250, 182);
+}
+
+.error-bg {
+    background-color: rgb(245, 172, 172);
+}
+
+.warning-bg {
+    background-color: rgb(247, 218, 165);
+}
+    </style>
   <body>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col" ><h1 style="padding: 0px 3rem;"><i class="fa fa-bug" style="margin-right: 5px;"></i>Apigee Bundle Linter Report</h1></th>
+          <th scope="col" style="background-color: rgb(179, 190, 199);">
+            <h1 style="padding: 0px 3rem">
+              <i class="fa fa-bug" style="margin-right: 5px"></i>Apigee Bundle
+              Linter Report
+            </h1>
+          </th>
         </tr>
       </thead>
       <tbody>
         <% data.formattedArray.forEach((element, index) => { %>
         <tr>
-          <td style="padding: 5px 3rem; border-top: 0px;">
+          <td style="padding: 5px 3rem; border-top: 0px">
             <div id="accordion<%= index %>">
               <div class="card">
-                <div class="card-header" id="heading<%= index %>">
+                <div
+                  class="card-header  <% if (element.messages.length > 0 && element.errorCount>0 ) { %>error-bg <% }else if (element.messages.length > 0 &&element.warningCount>0){ %> warning-bg <% } else { %> success-bg<%}%>"
+                  id="heading<%= index %>"
+                >
                   <div
                     style="
                       display: flex;
@@ -48,15 +71,10 @@
                       style="width: fit-content; font-family: Rubik, sans-serif"
                     >
                       <a
-                        class="btn btn-link"
+                        class="btn btn-link text-dark"
                         target="_blank"
                         href="<%=element.filePath%>"
-                        <%
-                        if
-                        (element.messages.length
-                      >
-                        0 && element.messages.some(msg => msg.message)) { %>
-                        style="color: red;" <% } %> > <%= element.name %>
+                        ><%= element.name %>
                       </a>
                     </h5>
                     <div>
@@ -68,7 +86,7 @@
                           margin-right: 4px;
                           font-size: medium;
                         "
-                        ><%= element.errorCount%></span
+                        >Error : <%= element.errorCount%></span
                       >
                       <span
                         class="badge badge-warning"
@@ -78,7 +96,7 @@
                           margin-right: 4px;
                           font-size: medium;
                         "
-                        ><%= element.warningCount%></span
+                        > Warning : <%= element.warningCount%></span
                       >
                     </div>
                   </div>
