@@ -1,41 +1,6 @@
-/**
- * Generates Apigee console URLs based on the provided organization name and JSON array.
- *
- * @param {string} orgName - The name of the Google Cloud project.
- * @param {Array} jsonArray - The JSON array containing file paths and lint results.
- * @returns {Array} - The formatted JSON array with updated file paths.
- */
-function formatLintReport(orgName, apiProxyName,jsonArray) {
-  const revisionNumber = 1; // Replace with the actual revision number if needed
-  const getApigeeUrl = (filePath) => {
-    const baseUrl = `https://console.cloud.google.com/apigee/proxies/${apiProxyName}/develop/${revisionNumber}`;
+import formatLintReport from "./utility/formatLintReport.js";
 
-    if (filePath.includes("/proxies/")) {
-      return `${baseUrl}/proxy-endpoints/default?project=${orgName}`;
-    } else if (filePath.includes("/targets/")) {
-      const targetName = filePath.split("/").pop().replace(".xml", "");
-      return `${baseUrl}/target-endpoints/${targetName}?project=${orgName}`;
-    } else if (filePath.includes("/policies/")) {
-      const policyName = filePath.split("/").pop().replace(".xml", "");
-      return `${baseUrl}/policies/${policyName}?project=${orgName}`;
-    } else if (filePath.includes("/resources/jsc/")) {
-      const resourceName = filePath.split("/").pop();
-      return `${baseUrl}/resources/jsc/${resourceName}?project=${orgName}`;
-    } else {
-      return `${baseUrl}?project=${orgName}`;
-    }
-  };
-  let totalErrorCount = 0;
-  let totalWarningCount = 0;
-  const formattedArray = jsonArray.map((item) => {
-    totalErrorCount += item.errorCount;
-    totalWarningCount += item.warningCount;
-    item.filePath = getApigeeUrl(item.filePath);
-    return item;
-  });
 
-  return { formattedArray, totalErrorCount, totalWarningCount };
-}
 
 // Example usage:
 const orgName = "third-octagon-427015-c4";
@@ -195,4 +160,4 @@ const lintResults = [
   },
 ];
 
-console.log(formatLintReport(orgName,"hello-world", lintResults));
+console.log(formatLintReport(orgName,"hello-world", 2,lintResults));

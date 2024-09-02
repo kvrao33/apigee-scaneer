@@ -23,6 +23,9 @@
             background-color: #eaf2f8;
             border-left: 5px solid #007bff;
         }
+        .collapse {
+            margin-top: 1em;
+        }
     </style>
 </head>
 <body>
@@ -40,33 +43,39 @@
             <thead>
                 <tr>
                     <th>File Path</th>
-                    <th>Errors</th>
-                    <th>Warnings</th>
-                    <th>Fixable Errors</th>
-                    <th>Fixable Warnings</th>
-                    <th>Messages</th>
+                    <th>Error Count</th>
+                    <th>Warning Count</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
-                <% formattedArray.forEach(item => { %>
-                    <tr class="<%= item.warningCount > 0 ? 'highlight' : '' %>">
-                        <td><a href="<%= item.filePath %>" target="_blank"><%= item.filePath %></a></td>
+                <% formattedArray.slice(0, 3).forEach((item, index) => { %>
+                    <tr class="<%= item.warningCount > 0 || item.errorCount > 0 ? 'highlight' : '' %>">
+                        <td>
+                            <a href="<%= item.filePath %>" target="_blank"><%= item.filePath %></a>
+                        </td>
                         <td><span class="badge badge-danger"><%= item.errorCount %></span></td>
                         <td><span class="badge badge-warning"><%= item.warningCount %></span></td>
-                        <td><span class="badge badge-danger"><%= item.fixableErrorCount %></span></td>
-                        <td><span class="badge badge-warning"><%= item.fixableWarningCount %></span></td>
                         <td>
                             <% if (item.messages.length > 0) { %>
-                                <ul class="list-unstyled">
-                                    <% item.messages.forEach(message => { %>
-                                        <li>
-                                            <strong><%= message.nodeType %>:</strong> <%= message.message %>
-                                            <% if (message.line && message.column) { %>
-                                                <br><small>Line: <%= message.line %>, Column: <%= message.column %></small>
-                                            <% } %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
+                                <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#details-<%= index %>" aria-expanded="false" aria-controls="details-<%= index %>">
+                                    View Details
+                                </button>
+                                <div class="collapse" id="details-<%= index %>">
+                                    <ul class="list-unstyled mt-2">
+                                        <% item.messages.forEach(message => { %>
+                                            <li>
+                                                <strong><%= message.nodeType %>:</strong>
+                                                <%= message.message %>
+                                                <% if (message.line && message.column) { %>
+                                                    <br><small>Line: <%= message.line %>, Column: <%= message.column %></small>
+                                                <% } %>
+                                                <br><small>Severity: <%= message.severity === 1 ? 'Warning' : 'Error' %></small>
+                                                <br><small>Rule ID: <%= message.ruleId %></small>
+                                            </li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
                             <% } else { %>
                                 No messages
                             <% } %>
