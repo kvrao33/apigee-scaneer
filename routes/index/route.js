@@ -9,9 +9,9 @@ router.get('/', async (req, res) => {
     try {
 
         const accessToken = await generateToken()
-
+        const orgName=process.env.ORG_Name
         // Make the API call with the access token
-        const response = await axios.get('https://apigee.googleapis.com/v1/organizations/third-octagon-427015-c4/apis', {
+        const response = await axios.get(`https://apigee.googleapis.com/v1/organizations/${orgName}/apis`, {
             params: {
                 includeRevisions: true
             },

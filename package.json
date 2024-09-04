@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,10 +16,12 @@
     "apigeelint": "^2.55.4",
     "axios": "^1.7.6",
     "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "google-auth-library": "^9.14.0",
     "nodemon": "^3.1.4",
+    "open": "^10.1.0",
     "unzipper": "^0.12.3",
     "xlsx": "^0.18.5",
     "xlsx-style": "^0.8.13"

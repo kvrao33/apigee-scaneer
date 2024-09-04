@@ -1,6 +1,5 @@
 // routes/index.js
 import express from "express";
-import axios from "axios";
 import generateToken from "../../utility/generateToken.js";
 import downloadAndUnzipProxy from "../../utility/getProxyBundle.js";
 import formatLintReport from "../../utility/formatLintReport.js";
@@ -12,10 +11,10 @@ router.get("/", async (req, res) => {
   try {
     const { proxyName, revision } = req.query;
     const accessToken = await generateToken();
-    const orgName = "third-octagon-427015-c4";
+    const orgName = process.env.ORG_Name;
     // Make the API call with the access token
     const path = await downloadAndUnzipProxy(
-      "third-octagon-427015-c4",
+      orgName,
       proxyName,
       revision,
       accessToken
