@@ -26,19 +26,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% proxies.forEach((proxy, index) => { %>
+                    <% proxies.forEach((proxy) => { %>
                     <tr>
                         <td><%= proxy.name %></td>
                         <td>
-                            <input type="hidden" id="proxyName-<%= index %>" value="<%= proxy.name %>">
-                            <select id="revision-<%= index %>" class="form-control revision-select">
+                            <select class="form-control revision-select" data-proxy-name="<%= proxy.name %>">
                                 <% proxy.revision.forEach(rev => { %>
                                 <option value="<%= rev %>"><%= rev %></option>
                                 <% }) %>
                             </select>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-success get-report" data-index="<%= index %>">Get Report</button>
+                            <button type="button" class="btn btn-success get-report" data-proxy-name="<%= proxy.name %>">Get Report</button>
                         </td>
                     </tr>
                     <% }) %>
@@ -49,16 +48,17 @@
 
     <script>
         $(document).ready(function(){
-            $('#myTable').dataTable();
-
-            $('.get-report').click(function(){
-                var index = $(this).data('index');
-                var proxyName = $('#proxyName-' + index).val();
-                var revision = $('#revision-' + index).val();
-
+            // Initialize DataTable
+            var table = $('#myTable').DataTable();
+    
+            // Use .on() to handle dynamically added elements by DataTables
+            $('#myTable tbody').on('click', '.get-report', function(){
+                var proxyName = $(this).data('proxy-name');
+                var revision = $(this).closest('tr').find('.revision-select').val();
+    
                 console.log('proxyName:', proxyName);
                 console.log('revision:', revision);
-
+    
                 if (proxyName && revision) {
                     var url = '/get-report?proxyName=' + encodeURIComponent(proxyName) + '&revision=' + encodeURIComponent(revision);
                     window.open(url, '_blank');
@@ -68,5 +68,6 @@
             });
         });
     </script>
+    
 </body>
 </html>
