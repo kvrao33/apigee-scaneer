@@ -235,7 +235,7 @@ function generatexls() {
   //   worksheet["!merges"] = [{ s: { r: 1, c: 0 }, e: { r: 1, c: 1 } }];
   // Apply styles to the merged cell
   const mergedCellStyle = {
-    font: { bold: true, sz: 14, color: { rgb: "000000" } },
+    font: { bold: true, sz: 12, color: { rgb: "000000" } },
     fill: { fgColor: { rgb: "FFFFFF" } },
     alignment: { horizontal: "center" },
     border: darkBorder,
