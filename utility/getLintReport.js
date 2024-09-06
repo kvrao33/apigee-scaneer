@@ -1,6 +1,6 @@
-import apigeelint from "apigeelint";
+const apigeelint = require('apigeelint');
 
-export default async function getLintReport(bundleType, path) {
+module.exports = async function getLintReport(bundleType, path) {
   const configuration = {
     debug: true,
     source: {
@@ -11,11 +11,11 @@ export default async function getLintReport(bundleType, path) {
     externalPluginsDirectory: undefined,
     excluded: {},
     maxWarnings: -1,
-    profile: "apigee",
+    profile: "apigeex",
     formatter: "json.js",
     output: "none",
   };
   const data = await apigeelint.bundleLinter.lint(configuration);
   return data.getReport();
-}
+};
 

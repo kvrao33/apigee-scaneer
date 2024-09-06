@@ -1,17 +1,16 @@
-// routes/index.js
-import express from "express";
-import generateToken from "../../utility/generateToken.js";
-import downloadAndUnzipProxy from "../../utility/getProxyBundle.js";
-import formatLintReport from "../../utility/formatLintReport.js";
-import getLintReport from "../../utility/getLintReport.js";
-import fs from "fs";
+const express = require('express');
+const generateToken = require('../../utility/generateToken.js');
+const downloadAndUnzipProxy = require('../../utility/getProxyBundle.js');
+const formatLintReport = require('../../utility/formatLintReport.js');
+const getLintReport = require('../../utility/getLintReport.js');
+const fs = require('fs');
+const path = require('path');
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const { proxyName, revision } = req.query;
+    const { proxyName, revision, orgName } = req.query;
     const accessToken = await generateToken();
-    const orgName = process.env.ORG_Name;
     // Make the API call with the access token
     const path = await downloadAndUnzipProxy(
       orgName,
@@ -34,4 +33,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

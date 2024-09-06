@@ -1,11 +1,11 @@
-import generateToken from "./generateToken.js";
-import axios from "axios";
+const generateToken = require('./generateToken.js');
+const axios = require('axios');
 
 const orgname = "third-octagon-427015-c4";
 const token = await generateToken();
 const revision = 1;
 
-async function getApiProxyRevision(orgname,token){
+async function getApiProxyRevision(orgname,token,revision){
     try{
         const proxyRevision = await axios.get(`https://apigee.googleapis.com/v1/organizations/${orgname}/apis/hello-world/revisions/${revision}`,{
             headers : {
@@ -18,6 +18,6 @@ async function getApiProxyRevision(orgname,token){
         console.error("Error : ",error.message);
     }
 }
-await getApiProxyRevision(orgname,token);
+await getApiProxyRevision(orgname,token,revision);
 
-export default getApiProxyRevision;
+module.exports = getApiProxyRevision;

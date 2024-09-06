@@ -1,5 +1,5 @@
-import generateToken from "./generateToken.js";
-import axios from "axios";
+const generateToken = require('./generateToken');
+const axios = require('axios');
 
 const orgname = "third-octagon-427015-c4";
 const token = await generateToken();
@@ -19,4 +19,4 @@ async function getApiProxyList(orgname,token){
 }
 await getApiProxyList(orgname,token);
 
-export default getApiProxyList;
+module.exports = getApiProxyList;

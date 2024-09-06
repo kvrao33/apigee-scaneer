@@ -1,11 +1,13 @@
-import { fileURLToPath } from "url";
-import path from "path";
-import XLSX from "xlsx";
-import XLSXStyle from "xlsx-style";
+const { fileURLToPath } = require('url');
+const path = require('path');
+const XLSX = require('xlsx');
+const XLSXStyle = require('xlsx-style');
+
 
 // Create __dirname equivalent in ES module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 // Sample lintResults data (same as before)
 const lintResults = {
@@ -307,4 +309,4 @@ function applyStyleIfExists(worksheet, cell, style) {
   }
 }
 
-export default generatexls;
+module.exports = generateXls;

@@ -1,14 +1,21 @@
-import open from "open";
-
 const openBrowser = async (url) => {
   try {
-    // Try to open Chrome
-    await open(url, { app: "chrome" });
+    // Dynamically import the `open` module
+    const { default: open } = await import('open');
+    // Try to open Chrome using 'google-chrome'
+    await open(url, { app: { name: 'google-chrome' } });
+    console.log("Chrome Found.");
   } catch (error) {
     console.log("Chrome not found, opening in the default browser.");
-    // Fallback to the default browser if Chrome is not available
-    await open(url);
+    try {
+      // Fallback to the default browser if Chrome is not available
+      const { default: open } = await import('open');
+      await open(url);
+    } catch (fallbackError) {
+      console.error("Failed to open the URL in any browser:", fallbackError);
+    }
   }
 };
 
-export default openBrowser;
+
+module.exports = openBrowser;

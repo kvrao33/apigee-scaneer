@@ -1,16 +1,23 @@
-// routes/index.js
-import express from 'express';
-import getProxyList from '../../utility/getProxyList.js';
+
+const express = require('express');
+const axios = require('axios');
+const generateToken = require('../../utility/generateToken.js');
+const getApigeeOrgList = require('../../utility/getOrglist.js');
+
 const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const proxies = await getProxyList();
-        res.render('index', { proxies });
+
+
+        const apigeeOrgs = await getApigeeOrgList(); // Replace with your actual organizations
+        
+    res.render('welcome', { apigeeOrgs });
+
     } catch (error) {
         console.error(error);
         res.status(500).send('Server Error');
     }
 });
 
-export default router;
+module.exports = router;
