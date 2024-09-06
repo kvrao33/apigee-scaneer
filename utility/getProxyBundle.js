@@ -1,7 +1,8 @@
-import axios from 'axios';
-import fs from 'fs';
-import unzipper from 'unzipper';
-import path from 'path';
+const axios = require('axios');
+const fs = require('fs');
+const unzipper = require('unzipper');
+const path = require('path');
+
 
 const downloadAndUnzipProxy = async (orgName, proxyName,rev, token) => {
   const apiUrl = `https://apigee.googleapis.com/v1/organizations/${orgName}/apis/${proxyName}/revisions/${rev}?format=bundle`;
@@ -59,7 +60,8 @@ const downloadAndUnzipProxy = async (orgName, proxyName,rev, token) => {
   return localUnzipPath;
 };
 
-export default downloadAndUnzipProxy;
+module.exports = downloadAndUnzipProxy;
+
 
 // Example usage
 // downloadAndUnzipProxy('third-octagon-427015-c4', 'hello-world', 'eval', 'YOUR_ACCESS_TOKEN_HERE');

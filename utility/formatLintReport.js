@@ -58,4 +58,4 @@ function formatLintReport(orgName, apiProxyName, revisionNumber, jsonArray) {
   };
 }
 
-export default formatLintReport;
+module.exports = formatLintReport;

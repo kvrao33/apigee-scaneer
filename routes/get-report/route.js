@@ -1,10 +1,10 @@
-// routes/index.js
-import express from "express";
-import generateToken from "../../utility/generateToken.js";
-import downloadAndUnzipProxy from "../../utility/getProxyBundle.js";
-import formatLintReport from "../../utility/formatLintReport.js";
-import getLintReport from "../../utility/getLintReport.js";
-import fs from "fs";
+const express = require('express');
+const generateToken = require('../../utility/generateToken.js');
+const downloadAndUnzipProxy = require('../../utility/getProxyBundle.js');
+const formatLintReport = require('../../utility/formatLintReport.js');
+const getLintReport = require('../../utility/getLintReport.js');
+const fs = require('fs');
+const path = require('path');
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -33,4 +33,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

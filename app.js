@@ -1,13 +1,12 @@
-import express from "express";
-import path from "path";
-import bodyParser from "body-parser";
-import "dotenv/config";
-import { fileURLToPath } from "url";
-import apiBaseRouter from "./routes/baseRoute.js";
-import openbrowser from "./utility/openbrowser.js";
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+require("dotenv").config();
+const apiBaseRouter = require("./routes/baseRoute");
+const openbrowser = require("./utility/openbrowser");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+console.log(__dirname);
+ // Equivalent to __dirname in CommonJS
 const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,11 +20,10 @@ const PORT = process.env.PORT || 3003;
 if(process.env.ORG_Name){
 
   app.listen(PORT, () => {
-    const URL=`http://localhost:${PORT}`
+    const URL = `http://localhost:${PORT}`;
     console.log(`Server is running ${URL}`);
-    openbrowser(URL)
+    openbrowser(URL);
   });
 }else{
   console.log("Please set the Org Name in .env file");
-  
 }

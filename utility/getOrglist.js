@@ -1,7 +1,5 @@
-import generateToken from "./generateToken.js";
-import axios from "axios";
-
-
+const generateToken = require('./generateToken.js');
+const axios = require('axios');
 
 async function getApigeeOrgList(){
     try{
@@ -18,4 +16,4 @@ async function getApigeeOrgList(){
     }
 }
 
-export default getApigeeOrgList;
+module.exports = getApigeeOrgList;

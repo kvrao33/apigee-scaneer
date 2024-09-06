@@ -1,4 +1,4 @@
-import { GoogleAuth } from 'google-auth-library';
+const { GoogleAuth } = require('google-auth-library');
 
 async function generateToken () {
   try {
@@ -18,4 +18,4 @@ async function generateToken () {
   }
 };
 
-export default generateToken;
+module.exports = generateToken;
