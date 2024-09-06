@@ -9,9 +9,8 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const { proxyName, revision } = req.query;
+    const { proxyName, revision, orgName } = req.query;
     const accessToken = await generateToken();
-    const orgName = process.env.ORG_Name;
     // Make the API call with the access token
     const path = await downloadAndUnzipProxy(
       orgName,

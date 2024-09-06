@@ -1,73 +1,94 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Data Table Example</title>
     <!-- Required libraries -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
+    <link
+      href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <div class="header">
-        Apigee Scanner
-    </div>
+    <link
+      rel="stylesheet"
+      href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+    ></script>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="header">Apigee Scanner</div>
     <div class="container">
-        <h2>Proxy Details</h2>
-        <div class="table-responsive">
-            <table id="myTable" class="table table-striped display" width="100%">
-                <thead>
-                    <tr>
-                        <th>Proxy Name</th>
-                        <th>Revisions</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% proxies.forEach((proxy) => { %>
-                    <tr>
-                        <td><%= proxy.name %></td>
-                        <td>
-                            <select class="form-control revision-select" data-proxy-name="<%= proxy.name %>">
-                                <% proxy.revision.forEach(rev => { %>
-                                <option value="<%= rev %>"><%= rev %></option>
-                                <% }) %>
-                            </select>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-success get-report" data-proxy-name="<%= proxy.name %>">Get Report</button>
-                        </td>
-                    </tr>
-                    <% }) %>
-                </tbody>
-            </table>
-        </div>
+      <h2>Proxy Details</h2>
+      <div class="table-responsive">
+        <table id="myTable" class="table table-striped display" width="100%">
+          <thead>
+            <tr>
+              <th>Proxy Name</th>
+              <th>Revisions</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% proxies.forEach((proxy) => { %>
+            <tr>
+              <td><%= proxy.name %></td>
+              <td>
+                <select
+                  class="form-control revision-select"
+                  data-proxy-name="<%= proxy.name %>"
+                >
+                  <% proxy.revision.forEach(rev => { %>
+                  <option value="<%= rev %>"><%= rev %></option>
+                  <% }) %>
+                </select>
+                <input type="hidden" id="orgName" value="<%= orgName %>" />
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-success get-report"
+                  data-proxy-name="<%= proxy.name %>"
+                >
+                  Get Report
+                </button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <script>
-        $(document).ready(function(){
-            // Initialize DataTable
-            var table = $('#myTable').DataTable();
-    
-            // Use .on() to handle dynamically added elements by DataTables
-            $('#myTable tbody').on('click', '.get-report', function(){
-                var proxyName = $(this).data('proxy-name');
-                var revision = $(this).closest('tr').find('.revision-select').val();
-    
-                console.log('proxyName:', proxyName);
-                console.log('revision:', revision);
-    
-                if (proxyName && revision) {
-                    var url = '/get-report?proxyName=' + encodeURIComponent(proxyName) + '&revision=' + encodeURIComponent(revision);
-                    window.open(url, '_blank');
-                } else {
-                    alert("Please select a revision.");
-                }
-            });
+      $(document).ready(function () {
+        // Initialize DataTable
+        var table = $("#myTable").DataTable();
+
+        // Use .on() to handle dynamically added elements by DataTables
+        $("#myTable tbody").on("click", ".get-report", function () {
+          var proxyName = $(this).data("proxy-name");
+          var revision = $(this).closest("tr").find(".revision-select").val();
+          var orgName = $("#orgName").val(); // Get the organization name
+
+          console.log("proxyName:", proxyName);
+          console.log("revision:", revision);
+          console.log("orgName:", orgName);
+
+          if (proxyName && revision) {
+            var url = '/get-report?orgName=' + encodeURIComponent(orgName) + '&proxyName=' + encodeURIComponent(proxyName) + '&revision=' + encodeURIComponent(revision);
+            window.open(url, "_blank");
+          } else {
+            alert("Please select a revision.");
+          }
         });
+      });
     </script>
-    
-</body>
+  </body>
 </html>

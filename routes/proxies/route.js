@@ -13,6 +13,8 @@ console.log("inside Post");
         const accessToken = await generateToken()
         const orgName=req.body.organization
         // Make the API call with the access token
+        console.log(orgName);
+        
         const response = await axios.get(`https://apigee.googleapis.com/v1/organizations/${orgName}/apis`, {
             params: {
                 includeRevisions: true
@@ -25,7 +27,7 @@ console.log("inside Post");
 
         const proxies = response.data.proxies;
 
-        res.render('proxies', { proxies });
+        res.render('proxies', { proxies , orgName});
         // res.redirect(`/next-page?org=${selectedOrg}`);
 
     } catch (error) {
