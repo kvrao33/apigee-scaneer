@@ -11,7 +11,6 @@ router.get("/", async (req, res) => {
   try {
     const { proxyName, revision, orgName } = req.query;
     const accessToken = await generateToken();
-    // Make the API call with the access token
     const path = await downloadAndUnzipProxy(
       orgName,
       proxyName,
@@ -26,9 +25,8 @@ router.get("/", async (req, res) => {
     );
 
     fs.rmSync(path, { recursive: true, force: true });
-    res.render("reportv2", {data :lintResult});
+    res.status(200).render("reportv2", {data :lintResult});
   } catch (error) {
-    console.error(error);
     res.status(500).send("Server Error");
   }
 });

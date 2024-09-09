@@ -4,7 +4,6 @@ const getReportRouter = require('./get-report/route.js');
 const getProxiesRouter = require('./proxies/route.js');
 const apiBaseRouter = express.Router();
 // Exposed endpoints
-console.log("Base route");
 apiBaseRouter.use("/",indexRouter)
 apiBaseRouter.use('/proxies',getProxiesRouter)
 apiBaseRouter.use("/get-report",getReportRouter)

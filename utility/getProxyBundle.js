@@ -2,6 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const unzipper = require('unzipper');
 const path = require('path');
+const logger = require('./logger.js');
 
 
 const downloadAndUnzipProxy = async (orgName, proxyName,rev, token) => {
@@ -10,7 +11,6 @@ const downloadAndUnzipProxy = async (orgName, proxyName,rev, token) => {
   const localUnzipPath = path.join(process.cwd()+'/proxyBundle', proxyName+"_rev"+rev);
 
   try {
-    console.log(`Downloading proxy bundle from: ${apiUrl}`);
     
     // Download the proxy bundle
     const response = await axios({
@@ -36,23 +36,21 @@ const downloadAndUnzipProxy = async (orgName, proxyName,rev, token) => {
     await fs.createReadStream(localFilePath)
       .pipe(unzipper.Extract({ path: localUnzipPath }))
       .promise();
-
-    console.log(`Proxy bundle downloaded and unzipped to ${localUnzipPath}`);
   } catch (error) {
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
-      console.error('Error response data:', error.response.data);
-      console.error('Error response status:', error.response.status);
-      console.error('Error response headers:', error.response.headers);
+    logger.error('Error response data:'+error.response.data);
+      logger.error('Error response status:'+error.response.status);
+      logger.error('Error response headers:'+error.response.headers);
     } else if (error.request) {
       // The request was made but no response was received
-      console.error('Error request:', error.request);
+      logger.error('Error request:'+error.request);
     } else {
       // Something happened in setting up the request that triggered an Error
-      console.error('Error message:', error.message);
+      logger.error('Error message:'+error.message);
     }
-    console.error('Error config:', error.config);
+    logger.error('Error config:'+error.config);
   } finally {
     // Clean up the zip file if needed
     fs.unlinkSync(localFilePath);
