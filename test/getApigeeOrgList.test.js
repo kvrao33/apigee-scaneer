@@ -1,59 +1,51 @@
-// getApigeeOrgList.test.js
 const axios = require('axios');
 const generateToken = require('../utility/generateToken.js');
 const getApigeeOrgList = require('../utility/getOrglist.js');
+const logger = require('../utility/logger.js');
 
 jest.mock('axios');
 jest.mock('../utility/generateToken.js');
+jest.mock('../utility/logger.js');
 
 describe('getApigeeOrgList', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
 
-  test('should return organization list on successful API call', async () => {
-    // Mock the token generation and API response
-    const mockToken = 'mocked_token';
-    const mockOrganizations = ['org1', 'org2', 'org3'];
+    test('should return the organization list on successful API call', async () => {
+        const mockToken = 'mocked-token';
+        const mockOrgList = { organizations: ['org1', 'org2', 'org3'] };
 
-    generateToken.mockResolvedValue(mockToken);
-    axios.get.mockResolvedValue({ data: { organizations: mockOrganizations } });
+        generateToken.mockResolvedValue(mockToken);
+        axios.get.mockResolvedValue({ data: mockOrgList });
 
-    const organizations = await getApigeeOrgList();
+        const result = await getApigeeOrgList();
 
-    expect(generateToken).toHaveBeenCalled();
-    expect(axios.get).toHaveBeenCalledWith(
-      'https://apigee.googleapis.com/v1/organizations',
-      {
-        headers: {
-          Authorization: `Bearer ${mockToken}`
-        }
-      }
-    );
-    expect(organizations).toEqual(mockOrganizations);
-  });
+        expect(generateToken).toHaveBeenCalled();
+        expect(axios.get).toHaveBeenCalledWith('https://apigee.googleapis.com/v1/organizations', {
+            headers: {
+                Authorization: `Bearer ${mockToken}`,
+            },
+        });
+        expect(result).toEqual(mockOrgList.organizations);
+    });
 
-  test('should log an error if API call fails', async () => {
-    const mockToken = 'mocked_token';
-    const errorMessage = 'API request failed';
+    test('should log an error and return undefined if the API call fails', async () => {
+        const mockToken = 'mocked-token';
+        const errorMessage = 'API request failed';
 
-    generateToken.mockResolvedValue(mockToken);
-    axios.get.mockRejectedValue(new Error(errorMessage));
+        generateToken.mockResolvedValue(mockToken);
+        axios.get.mockRejectedValue(new Error(errorMessage));
 
-    console.error = jest.fn(); // Mock console.error
+        const result = await getApigeeOrgList();
 
-    const organizations = await getApigeeOrgList();
-
-    expect(generateToken).toHaveBeenCalled();
-    expect(axios.get).toHaveBeenCalledWith(
-      'https://apigee.googleapis.com/v1/organizations',
-      {
-        headers: {
-          Authorization: `Bearer ${mockToken}`
-        }
-      }
-    );
-    expect(console.error).toHaveBeenCalledWith('Error : ', errorMessage);
-    expect(organizations).toBeUndefined(); // As the function does not return anything on error
-  });
+        expect(generateToken).toHaveBeenCalled();
+        expect(axios.get).toHaveBeenCalledWith('https://apigee.googleapis.com/v1/organizations', {
+            headers: {
+                Authorization: `Bearer ${mockToken}`,
+            },
+        });
+        expect(logger.error).toHaveBeenCalledWith('Error : ', errorMessage);
+        expect(result).toBeUndefined();
+    });
 });

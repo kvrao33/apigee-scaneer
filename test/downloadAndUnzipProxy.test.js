@@ -1,13 +1,14 @@
-// downloadAndUnzipProxy.test.js
 const axios = require('axios');
 const fs = require('fs');
 const unzipper = require('unzipper');
 const path = require('path');
-const downloadAndUnzipProxy = require('../utility/getProxyBundle');
+const downloadAndUnzipProxy = require('../utility/getProxyBundle.js');
+const logger = require('../utility/logger.js');
 
 jest.mock('axios');
 jest.mock('fs');
 jest.mock('unzipper');
+jest.mock('../utility/logger.js');
 
 describe('downloadAndUnzipProxy', () => {
   const orgName = 'test-org';
@@ -15,8 +16,8 @@ describe('downloadAndUnzipProxy', () => {
   const rev = '1';
   const token = 'mock-token';
   const apiUrl = `https://apigee.googleapis.com/v1/organizations/${orgName}/apis/${proxyName}/revisions/${rev}?format=bundle`;
-  const localFilePath = path.join(process.cwd()+'/proxyBundle', `${proxyName}.zip`);
-  const localUnzipPath = path.join(process.cwd()+'/proxyBundle', `${proxyName}_rev${rev}`);
+  const localFilePath = path.join(process.cwd() + '/proxyBundle', `${proxyName}.zip`);
+  const localUnzipPath = path.join(process.cwd() + '/proxyBundle', `${proxyName}_rev${rev}`);
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -52,20 +53,48 @@ describe('downloadAndUnzipProxy', () => {
   });
 
   test('should handle API error gracefully', async () => {
-    axios.mockRejectedValue({
-      response: { data: 'Error data', status: 400, headers: {} },
-    });
+    const errorResponse = {
+      response: {
+        data: 'Error data',
+        status: 400,
+        headers: { 'content-type': 'application/json' },
+      },
+    };
+    axios.mockRejectedValue(errorResponse);
 
-    console.error = jest.fn();
+    logger.error = jest.fn(); // Mock the logger
 
     const result = await downloadAndUnzipProxy(orgName, proxyName, rev, token);
 
-    expect(console.error).toHaveBeenCalledWith('Error response data:', 'Error data');
-    expect(console.error).toHaveBeenCalledWith('Error response status:', 400);
-
+    expect(logger.error).toHaveBeenCalledWith('Error response data:Error data');
+    expect(logger.error).toHaveBeenCalledWith('Error response status:400');
+    expect(logger.error).toHaveBeenCalledWith('Error response headers:[object Object]');
     expect(result).toBe(localUnzipPath);
-    expect(fs.unlinkSync).toHaveBeenCalledWith(localFilePath); // Clean-up should still occur
+    expect(fs.unlinkSync).toHaveBeenCalledWith(localFilePath);
   });
 
-  // Additional test cases for request errors, unexpected errors, etc. can be added here.
+  test('should log request error if no response is received', async () => {
+    axios.mockRejectedValue({ request: 'Error request' });
+
+    logger.error = jest.fn(); // Mock the logger
+
+    const result = await downloadAndUnzipProxy(orgName, proxyName, rev, token);
+
+    expect(logger.error).toHaveBeenCalledWith('Error request:Error request');
+    expect(result).toBe(localUnzipPath);
+    expect(fs.unlinkSync).toHaveBeenCalledWith(localFilePath);
+  });
+
+  test('should log generic error message if something unexpected happens', async () => {
+    axios.mockRejectedValue({ message: 'Unexpected error', config: {} });
+
+    logger.error = jest.fn(); // Mock the logger
+
+    const result = await downloadAndUnzipProxy(orgName, proxyName, rev, token);
+
+    expect(logger.error).toHaveBeenCalledWith('Error message:Unexpected error');
+    // expect(logger.error).toHaveBeenCalledWith('Error config:{}');
+    expect(result).toBe(localUnzipPath);
+    expect(fs.unlinkSync).toHaveBeenCalledWith(localFilePath);
+  });
 });
