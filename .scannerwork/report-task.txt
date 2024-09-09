@@ -1,0 +1,6 @@
+projectKey=ApigeeScanner
+serverUrl=http://localhost:9003
+serverVersion=10.6.0.92116
+dashboardUrl=http://localhost:9003/dashboard?id=ApigeeScanner
+ceTaskId=2503455a-3f66-408f-95c8-82de36779c3c
+ceTaskUrl=http://localhost:9003/api/ce/task?id=2503455a-3f66-408f-95c8-82de36779c3c

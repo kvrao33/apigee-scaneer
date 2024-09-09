@@ -4,13 +4,15 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@niveus/express-context": "^1.0.0",
+    "@niveus/winston-utils": "^0.1.0",
     "adm-zip": "^0.5.15",
     "apigeelint": "^2.41.0",
     "axios": "^1.7.6",
@@ -22,7 +24,12 @@
     "nodemon": "^3.1.4",
     "open": "^10.1.0",
     "unzipper": "^0.12.3",
+    "winston": "^3.14.2",
     "xlsx": "^0.18.5",
     "xlsx-style": "^0.8.13"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }

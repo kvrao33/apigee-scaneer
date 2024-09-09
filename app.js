@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const apiBaseRouter = require("./routes/baseRoute");
 const openbrowser = require("./utility/openbrowser");
+const logger = require("./utility/logger.js")
 
 console.log(__dirname);
  // Equivalent to __dirname in CommonJS
@@ -21,7 +22,7 @@ if(process.env.ORG_Name){
 
   app.listen(PORT, () => {
     const URL = `http://localhost:${PORT}`;
-    console.log(`Server is running ${URL}`);
+    logger.info("Tetsing")
     openbrowser(URL);
   });
 }else{
