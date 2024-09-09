@@ -4,9 +4,8 @@ const winston = require('winston');
 const { combine, json, errors, timestamp, colorize } = winston.format;
 const { google } = config;
 
-// Custom format to include context information from expressContext
 const contextLogs = winston.format((info) => {
-  const keyNames = ['reqid', 'reqPath']; // Set by the middleware. It is configurable.
+  const keyNames = ["reqid", "reqPath"]; // Set by the middleware. It is configurable.
   const [requestId, reqPath] = expressContext.getMany(keyNames);
 
   info = { ...info, ...{ requestId, reqPath } };
@@ -14,27 +13,19 @@ const contextLogs = winston.format((info) => {
   return info;
 })();
 
-// Create a logger instance
 const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'error', // Default to 'error' level if not specified
+  level: process.env.LOG_LEVEL || "debug", // Setting default level to 'error' if log level is not provided.
   levels: google.levels,
-  format: combine(
-    errors({ stack: true }), // Include stack traces for errors
-    timestamp(), // Add timestamp to logs// Include request context
-    json() // Log in JSON format
-  ),
+  format: combine(errors({ stack: true }), timestamp(), contextLogs, json()),
   transports: [
     new winston.transports.Console({
-      format: combine(
-        colorize({ all: true }), // Colorize all log levels
-        json() // JSON format for console output
-      )
-    })
-  ]
+      format: winston.format.colorize({ all: true }),
+    }),
+  ],
 });
 
-// Add colors for different log levels
 winston.addColors(google.colors);
 
+// export default logger;
 // Export the logger
 module.exports = logger;

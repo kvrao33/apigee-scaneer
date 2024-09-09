@@ -1,5 +1,6 @@
 const generateToken = require('./generateToken.js');
 const axios = require('axios');
+const logger = require('./logger.js');
 
 async function getApigeeOrgList(){
     try{
@@ -9,10 +10,9 @@ async function getApigeeOrgList(){
                 Authorization : `Bearer ${token}`
             }
         });
-        // console.log(orglist.data);
         return orglist.data.organizations;
     }catch(error){
-        console.error("Error : ",error.message);
+       logger.error("Error : ",error.message);
     }
 }
 

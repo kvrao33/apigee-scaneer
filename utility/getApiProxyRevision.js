@@ -1,5 +1,6 @@
 const generateToken = require('./generateToken.js');
 const axios = require('axios');
+const logger = require('./logger.js');
 
 const orgname = "third-octagon-427015-c4";
 const token = await generateToken();
@@ -12,10 +13,9 @@ async function getApiProxyRevision(orgname,token,revision){
                 Authorization : `Bearer ${token}`
             }
         });
-        console.log(proxyRevision.data);
         return proxyRevision.data;
     }catch(error){
-        console.error("Error : ",error.message);
+        logger.error("Error : ",error.message);
     }
 }
 await getApiProxyRevision(orgname,token,revision);
