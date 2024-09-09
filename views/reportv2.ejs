@@ -112,7 +112,7 @@
                     <div style="width: 5%;"><%= element.messages[i].line?element.messages[i].line:0 %>:<%= element.messages[i].column?element.messages[i].column:0 %></div>
                     <div style="width: 5%;"> <div  class="badge <%= element.messages[i].severity===2?"badge-danger":"badge-warning" %>"><%= element.messages[i].severity===2?"Error":"Warning" %></div></div>
                     <div style="width: 80%; display: flex;justify-content: center;align-items: center;"><%= element.messages[i].message %></div>
-                    <div style="width: 10%;"> <a target="_blank" href="https://www.npmjs.com/package/apigeelint/v/2.41.0#rules"><%= element.messages[i].ruleId %></a></div>
+                    <div style="width: 10%;"> <a target="_blank" href="https://gitlab.niveussolutions.com/accelerators-lab/apigee-scanner/rules.v1.md"><%= element.messages[i].ruleId %></a></div>
                   </div>
                   <% if (i < element.messages.length - 1) { %>
                   <hr />
