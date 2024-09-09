@@ -35,12 +35,10 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/", apiBaseRouter);
 const PORT = process.env.PORT || 3003;
-if (process.env.ORG_Name) {
-  app.listen(PORT, () => {
-    const URL = `http://localhost:${PORT}`;
-    logger.info(`Server is running on : ${URL}`);
-    openbrowser(URL);
-  });
-} else {
-  logger.error("Please setup a gcloud SDK in your system");
-}
+
+app.listen(PORT, () => {
+  const URL = `http://localhost:${PORT}`;
+  logger.info(`Server is running on : ${URL}`);
+  openbrowser(URL);
+});
+
