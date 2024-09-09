@@ -1,38 +1,27 @@
-/* public/css/style.css */
-/* body {
-    background: linear-gradient(to bottom, #00c6ff, #0072ff);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  } */
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to bottom, #bde3ee, #8ebcf5);
-    overflow: hidden;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #bde3ee, #8ebcf5);
+  overflow-y: auto; /* Allow vertical scrolling */
 }
 
 .header {
-    /* background-color: #0072ff; */
-    color: #ffffff;
-    /* border: 2px solid #ffffff; */
-    border-radius: 10px;
-    padding: 15px 25px;
-    text-align: center;
-    margin: 12px; /* No margin at the top */
-    font-size: 56px;
-    font-weight: bold;
-    text-shadow: 2px 2px 0 #000000;
-    position: absolute; /* Position at the top */
-    top: 0; /* Align with the top of the page */
-    width: 80%;
-    max-width: 700px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 15px 25px;
+  text-align: center;
+  margin: 12px;
+  font-size: 56px;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #000000;
+  position: relative; /* Use relative positioning */
+  width: 80%;
+  max-width: 700px;
 }
 
 .info {
@@ -44,9 +33,8 @@
   width: 80%;
   max-width: 700px;
   text-align: center;
-  margin: 20px 0;
-  position: absolute; /* Position below the header */
-  top: 80px; /* Adjust based on header height */
+  margin-top: 20px;
+  position: relative; /* Use relative positioning */
 }
 
 .container {
@@ -56,13 +44,14 @@
   border-radius: 10px;
   width: 80%;
   max-width: 900px;
-  position: absolute;
-  top: 150px; /* Adjust based on header and info height */
+  margin-top: 20px; /* Add margin for spacing instead of top positioning */
+  position: relative; /* Allow it to flow naturally */
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px; /* Ensure some spacing from other elements */
 }
 
 th, td {
@@ -76,16 +65,14 @@ th {
   font-weight: bold;
 }
 
-/* Make the 'Proxy Name' column header bold and apply a different font */
 th:nth-child(1) {
   font-weight: bolder;
 }
 
-/* Style for the 'Proxy Name' column data */
 td:nth-child(1) {
-  font-family: 'Arial', sans-serif; /* You can use a different font if you prefer */
+  font-family: 'Arial', sans-serif;
   font-weight: bold;
-  color: #000105; /* Stylish font color */
+  color: #000105;
 }
 
 tr:hover {
